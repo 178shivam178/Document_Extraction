@@ -47,7 +47,9 @@ pip install -r requirements.txt
 ### 4. SET your openAI KEY
 Change .env
 
-### 5. Run api.py 
+### 5. SET your openAI KEY
+We need to install tesseract based on your system and set path for popler
+### 6. Run api.py 
 
 ```bash
 http://127.0.0.1/3008/v1/api/extraction

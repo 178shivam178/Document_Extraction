@@ -27,17 +27,13 @@ def create_app():
     app.config['UPLOAD_FOLDER'] = uploads_folder
     app.config['MAX_CONTENT_LENGTH'] = int(os.environ.get('MAX_CONTENT_LENGTH', 16 * 1024 * 1024))
     app.config['ALLOWED_EXTENSIONS'] = set(os.environ.get('ALLOWED_EXTENSIONS', 'csv,png,jpeg,jpg,pdf,docx,xlsx,txt').split(','))
-    app.config['LOG_FILE'] = os.environ.get('LOG_FILE', 'app.log')
+    app.config['LOG_FILE'] = os.environ.get('LOG_FILE', 'logs/app.log')
 
     logging.basicConfig(filename=app.config['LOG_FILE'], level=logging.ERROR)
 
     api_bp = Blueprint('api', __name__)
 
-    @api_bp.route('/uploads/<filename>', methods=['GET'])
-    def download_file(filename):
-        return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
-
-    @api_bp.route('v1/api/extraction', methods=['POST'])
+    @api_bp.route('/v1/api/extraction', methods=['POST'])
     def ExtractionAPI():
         try:
             file = request.files.get('file')
@@ -98,7 +94,7 @@ def create_app():
 
         except Exception as e:
             logging.error(f'Error: {str(e)}')
-            return make_response(jsonify({'error': 'An unexpected error occurred during processing'}), 500)
+            return make_response(jsonify({'error': f'An unexpected error occurred during processing {e}'}), 500)
 
     app.register_blueprint(api_bp)
     return app

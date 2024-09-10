@@ -1,0 +1,39 @@
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:3008
+ * Running on http://192.168.1.10:3008
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 646-267-909
+ERROR:root:Error: 'str' object does not support item assignment
+INFO:werkzeug:127.0.0.1 - - [11/Sep/2024 00:51:47] "[35m[1mPOST /v1/api/extraction HTTP/1.1[0m" 500 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:3008
+ * Running on http://192.168.1.10:3008
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 646-267-909
+INFO:werkzeug:127.0.0.1 - - [11/Sep/2024 00:53:54] "POST /v1/api/extraction HTTP/1.1" 200 -
+ERROR:root:Error: 'str' object does not support item assignment
+INFO:werkzeug:127.0.0.1 - - [11/Sep/2024 00:56:45] "[35m[1mPOST /v1/api/extraction HTTP/1.1[0m" 500 -
+ERROR:root:Error: 'str' object does not support item assignment
+INFO:werkzeug:127.0.0.1 - - [11/Sep/2024 00:57:04] "[35m[1mPOST /v1/api/extraction HTTP/1.1[0m" 500 -
+INFO:werkzeug: * Detected change in 'D:\\CodeD\\UPWORKS\\Document_Extraction\\type_documents\\image_extraction.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:3008
+ * Running on http://192.168.1.10:3008
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 646-267-909
+ERROR:root:Error: 'str' object does not support item assignment
+INFO:werkzeug:127.0.0.1 - - [11/Sep/2024 00:58:15] "[35m[1mPOST /v1/api/extraction HTTP/1.1[0m" 500 -
+INFO:werkzeug: * Detected change in 'D:\\CodeD\\UPWORKS\\Document_Extraction\\api.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:werkzeug: * Restarting with stat
+INFO:werkzeug: * Restarting with stat

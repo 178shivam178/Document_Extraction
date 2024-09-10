@@ -1,5 +1,5 @@
 import aspose.words as aw
-from src.llm_model import CheckInvoice
+from llm_engine.model import CheckInvoice
 def get_docx_text(docx_file_path):
     doc = aw.Document(docx_file_path)
     all_text = ""

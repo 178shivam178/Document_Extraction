@@ -1,5 +1,5 @@
 import pandas as pd
-from src.llm_model import CheckInvoice
+from llm_engine.model import CheckInvoice
 def get_csv_text(csv_path):
     data_frame = pd.read_csv(csv_path)
     all_text = ''

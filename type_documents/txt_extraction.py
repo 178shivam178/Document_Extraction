@@ -1,4 +1,4 @@
-from src.llm_model import CheckInvoice
+from llm_engine.model import CheckInvoice
 
 def get_txt_text(file_path):
     all_text=''

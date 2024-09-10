@@ -1,8 +1,11 @@
 import pandas as pd
-from src.llm_model import CheckInvoice
+from llm_engine.model import CheckInvoice
+from pathlib import Path
 
 def get_excel_text(excel_path):
-    xls = pd.ExcelFile(excel_path, engine='openpyxl')
+    if isinstance(excel_path, Path):
+            excel_path = str(excel_path)
+    xls = pd.ExcelFile(str(excel_path), engine='openpyxl')
     all_text = ''
 
     for sheet_name in xls.sheet_names:
@@ -20,4 +23,5 @@ def ExcelProcessing(excel_filepath):
         return extracted_fields,document_type
 
     except Exception as e:
-        return {'error': 'An error occurred', 'details': str(e)}
+        print(e)
+        raise {'error': 'An error occurred', 'details': str(e)}
