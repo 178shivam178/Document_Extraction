@@ -37,7 +37,7 @@ def create_app():
     def download_file(filename):
         return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
 
-    @api_bp.route('/files_v1.0', methods=['POST'])
+    @api_bp.route('v1/api/extraction', methods=['POST'])
     def ExtractionAPI():
         try:
             file = request.files.get('file')

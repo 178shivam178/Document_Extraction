@@ -45,6 +45,12 @@ pip install -r requirements.txt
 ```
 
 ### 4. SET your openAI KEY
-```bash
 Change .env
 
+### 5. Run api.py 
+
+```bash
+http://127.0.0.1/3008/v1/api/extraction
+```
+
+### 6. use postman by uploading any documents to see response 
