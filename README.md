@@ -52,7 +52,8 @@ We need to install tesseract based on your system and set path for popler
 ### 6. Run api.py 
 
 ```bash
-http://127.0.0.1/3008/v1/api/extraction
+http://127.0.0.1/3008
 ```
 
-### 6. use postman by uploading any documents to see response 
+
+[Document & Text Extraction.mp4](Document%20&%20Text%20Extraction.mp4)

@@ -13,11 +13,8 @@ def clean(text):
 from dotenv import load_dotenv
 
 load_dotenv() 
-api_key = os.getenv("OPENAI_API_KEY")
+api_key = os.getenv("openai_api_key")
     
-def set_openai_api_key():
-    os.environ["OPENAI_API_KEY"] = api_key
-
 
 def writingCSVFile(extracted_field, filename):
     try:
@@ -47,7 +44,7 @@ def get_text_chunks(text):
 
 def get_vectorstore(text_chunks):
     try:
-        embeddings = OpenAIEmbeddings()
+        embeddings = OpenAIEmbeddings(openai_api_key = api_key)
         vectorstore = FAISS.from_texts(texts=text_chunks, embedding=embeddings)
         return vectorstore
     except Exception as e:
@@ -56,7 +53,7 @@ def get_vectorstore(text_chunks):
 
 def get_conversation_chain(vectorstore):
     try:
-        llm = ChatOpenAI()
+        llm = ChatOpenAI(openai_api_key = api_key)
         memory = ConversationBufferMemory(
             memory_key='chat_history', return_messages=True)
         conversation_chain = ConversationalRetrievalChain.from_llm(
@@ -71,27 +68,28 @@ def get_conversation_chain(vectorstore):
 
 def Invoice_Extract(conversation):
     try:
+        prompt_instructions = "Please provide only the value without any explanation."
         user_questions = [
-            "What is the invoice number?",
-            "What is invoice date?", 
-            "What is due date?",
-            "What is the balance due?",
-            "What is total amount?",
-            "What is the Vendor name", 
-            "What is Pay term?", 
-            "What is the PO number?",
-            "What is total Service/Product name?", 
-            "What is the Bank account number?", 
-            "What is Tax id ?",
-            "What is Tax rate?", 
-            "What is the Discount?", 
-            "What is Billing address?", 
-            "What is Shipping address ?",
-            "What is Shipping method?", 
-            "What is the Cost center or GL for Service vendors?", 
-            "What is Sub total?",
-            "What is the Tax amount with rate of %?", 
-            "What is Remarks/Notes ?"
+            f"{prompt_instructions} what is the invoice number?",
+            f"{prompt_instructions} what is invoice date?", 
+            f"{prompt_instructions} what is due date?",
+            f"{prompt_instructions} what is the balance due?",
+            f"{prompt_instructions} what is total amount?",
+            f"{prompt_instructions} what is the Vendor name", 
+            f"{prompt_instructions} what is Pay term?", 
+            f"{prompt_instructions} what is the PO number?",
+            f"{prompt_instructions} what is total Service/Product name?", 
+            f"{prompt_instructions} what is the Bank account number?", 
+            f"{prompt_instructions} what is Tax id ?",
+            f"{prompt_instructions} what is Tax rate?", 
+            f"{prompt_instructions} what is the Discount?", 
+            f"{prompt_instructions} what is Billing address?", 
+            f"{prompt_instructions} what is Shipping address ?",
+            f"{prompt_instructions} what is Shipping method?", 
+            f"{prompt_instructions} what is the Cost center or GL for Service vendors?", 
+            f"{prompt_instructions} what is Sub total?",
+            f"{prompt_instructions} what is the Tax amount with rate of %?", 
+            f"{prompt_instructions} what is Remarks/Notes ?"
         ]
 
         keys = [
@@ -138,29 +136,30 @@ def Invoice_Extract(conversation):
 
 def PO_Extract(conversation):
     try:
+        prompt_instructions = "Please provide only the value without any explanation."
         user_questions = [
-            "What is the Vendor name?",
-            "What is the Date?",
-            "What is the Address?",
-            "What is the P.O number?",
-            "What is the Payment terms?",
-            "What is the Rate?",
-            "What is the P.O validity?",
-            "What is the Qty?",
-            "What is the Ship Via/Shipping method?",
-            "What is the Purchases from - Vendor name with address & contact name?",
-            "What is the Ship to company name with address & contact name?",
-            "What is the Goods required by date?",
-            "What are the Item descriptions?",
-            "What is the Quantity?",
-            "What is the Unit Price?",
-            "What is the Amount?",
-            "What is the Approved by?",
-            "What is the Subtotal?",
-            "What are the Freight charges?",
-            "What is the Sales tax?",
-            "What is the Order Total with currency?",
-            "What are the Remarks/Notes?"
+            f"{prompt_instructions} what is the Vendor name?",
+            f"{prompt_instructions} what is the Date?",
+            f"{prompt_instructions} what is the Address?",
+            f"{prompt_instructions} what is the P.O number?",
+            f"{prompt_instructions} what is the Payment terms?",
+            f"{prompt_instructions} what is the Rate?",
+            f"{prompt_instructions} what is the P.O validity?",
+            f"{prompt_instructions} what is the Qty?",
+            f"{prompt_instructions} what is the Ship Via/Shipping method?",
+            f"{prompt_instructions} what is the Purchases from - Vendor name with address & contact name?",
+            f"{prompt_instructions} what is the Ship to company name with address & contact name?",
+            f"{prompt_instructions} what is the Goods required by date?",
+            f"{prompt_instructions} what are the Item descriptions?",
+            f"{prompt_instructions} what is the Quantity?",
+            f"{prompt_instructions} what is the Unit Price?",
+            f"{prompt_instructions} what is the Amount?",
+            f"{prompt_instructions} what is the Approved by?",
+            f"{prompt_instructions} what is the Subtotal?",
+            f"{prompt_instructions} what are the Freight charges?",
+            f"{prompt_instructions} what is the Sales tax?",
+            f"{prompt_instructions} what is the Order Total with currency?",
+            f"{prompt_instructions} what are the Remarks/Notes?"
             ]
         keys = [
             'Vendor_Name',
@@ -206,22 +205,23 @@ def PO_Extract(conversation):
 
 def PR_Extract(conversation):
     try:
+        prompt_instructions = "Please provide only the value without any explanation."
         user_questions = [
-            "What is the PR Number?",
-            "What is the PR Date?",
-            "What is the Expected date of delivery?",
-            "What is the Qty?",
-            "What is the Description?",
-            "What is the Product/Service?",
-            "What are the Price details/Budgeted cost?",
-            "What are the Quotations/Tender received?",
-            "Who is the Recommended vendor?",
-            "Who proposed this with signature & date?",
-            "Who approved this with signature & date?",
-            "What is the Department?",
-            "What is the Expense account?",
-            "Where is it to be shipped (Ship To)?",
-            "What are the Remarks?"
+            f"{prompt_instructions} what is the PR Number?",
+            f"{prompt_instructions} what is the PR Date?",
+            f"{prompt_instructions} what is the Expected date of delivery?",
+            f"{prompt_instructions} what is the Qty?",
+            f"{prompt_instructions} what is the Description?",
+            f"{prompt_instructions} what is the Product/Service?",
+            f"{prompt_instructions} what are the Price details/Budgeted cost?",
+            f"{prompt_instructions} what are the Quotations/Tender received?",
+            f"{prompt_instructions} Who is the Recommended vendor?",
+            f"{prompt_instructions} Who proposed this with signature & date?",
+            f"{prompt_instructions} Who approved this with signature & date?",
+            f"{prompt_instructions} what is the Department?",
+            f"{prompt_instructions} what is the Expense account?",
+            f"{prompt_instructions} Where is it to be shipped (Ship To)?",
+            f"{prompt_instructions} what are the Remarks?"
             ]
         keys = [
             'PR_Number',
@@ -260,14 +260,15 @@ def PR_Extract(conversation):
       
 def Form9(conversation):
     try:
+        prompt_instructions = "Please provide only the value without any explanation."
         user_questions = [
-            "What is the Vendor name?",
-            "What is the Business name?",
-            "What is the Vendor class?",
-            "What is the Address?",
-            "What is the SSN/EIN?",
-            "Who is the Signature of authorized person?",
-            "What is the Date?"
+            f"{prompt_instructions} what is the Vendor name?",
+            f"{prompt_instructions} what is the Business name?",
+            f"{prompt_instructions} what is the Vendor class?",
+            f"{prompt_instructions} what is the Address?",
+            f"{prompt_instructions} what is the SSN/EIN?",
+            f"{prompt_instructions} Who is the Signature of authorized person?",
+            f"{prompt_instructions} what is the Date?"
             ]
         keys = [
             'Vendor_Name',
@@ -298,16 +299,17 @@ def Form9(conversation):
         return None
     
 def FormW8BEN(conversation):
+    prompt_instructions = "Please provide only the value without any explanation."
     try:
         user_questions = [
-            "What is the Name?",
-            "What is the Address?",
-            "What is the SSN/TIN?",
-            "What is the Foreign TIN?",
-            "What is the Resident country?",
-            "What are the Special rates and conditions %?",
-            "What is the Certification?",
-            "What is the Date?"
+            f"{prompt_instructions} what is the Name?",
+            f"{prompt_instructions} what is the Address?",
+            f"{prompt_instructions} what is the SSN/TIN?",
+            f"{prompt_instructions} what is the Foreign TIN?",
+            f"{prompt_instructions} what is the Resident country?",
+            f"{prompt_instructions} what are the Special rates and conditions %?",
+            f"{prompt_instructions} what is the Certification?",
+            f"{prompt_instructions} what is the Date?"
             ]
         keys = [
             'Name',
@@ -338,17 +340,18 @@ def FormW8BEN(conversation):
         return None
 
 def FormW8BENE(conversation):
+    prompt_instructions = "Please provide only the value without any explanation."
     try:
         user_questions = [
-            "What is the Name?",
-            "What is the Name of disregarded entity?",
-            "What is the Country of incorporation?",
-            "What is the Entity type?",
-            "What is the FATCA status?",
-            "What is the Permanent address?",
-            "What are the Treaty benefits?",
-            "What is the Certification?",
-            "What is the Date?"
+            f"{prompt_instructions} what is the Name?",
+            f"{prompt_instructions} what is the Name of disregarded entity?",
+            f"{prompt_instructions} what is the Country of incorporation?",
+            f"{prompt_instructions} what is the Entity type?",
+            f"{prompt_instructions} what is the FATCA status?",
+            f"{prompt_instructions} what is the Permanent address?",
+            f"{prompt_instructions} what are the Treaty benefits?",
+            f"{prompt_instructions} what is the Certification?",
+            f"{prompt_instructions} what is the Date?"
             ]
         keys = [
             'Name',
@@ -382,22 +385,23 @@ def FormW8BENE(conversation):
     
 def GRGN(conversation):
     try:
+        prompt_instructions = "Please provide only the value without any explanation."
         user_questions = [
-            "What is the GRN No.?",
-            "What is the Vendor/Supplier Name with address?",
-            "What is the Buyer/Recipient name and address?",
-            "What is the Date?",
-            "What is the Location?",
-            "What is the Purchase Order?",
-            "What is the Delivery Method?",
-            "What are the Item descriptions?",
-            "What is the Price (in currency)?",
-            "What is the Tax (in currency value)?",
-            "Who received the goods?",
-            "What is the Date of receipt?",
-            "What are the Charging details (Cost center/Account codes)?",
-            "What is the Department name?",
-            "Do you have any Additional Information?"
+            f"{prompt_instructions} what is the GRN No.?",
+            f"{prompt_instructions} what is the Vendor/Supplier Name with address?",
+            f"{prompt_instructions} what is the Buyer/Recipient name and address?",
+            f"{prompt_instructions} what is the Date?",
+            f"{prompt_instructions} what is the Location?",
+            f"{prompt_instructions} what is the Purchase Order?",
+            f"{prompt_instructions} what is the Delivery Method?",
+            f"{prompt_instructions} what are the Item descriptions?",
+            f"{prompt_instructions} what is the Price (in currency)?",
+            f"{prompt_instructions} what is the Tax (in currency value)?",
+            f"{prompt_instructions} Who received the goods?",
+            f"{prompt_instructions} what is the Date of receipt?",
+            f"{prompt_instructions} what are the Charging details (Cost center/Account codes)?",
+            f"{prompt_instructions} what is the Department name?",
+            f"{prompt_instructions} Do you have any Additional Information?"
             ]
         keys = [
             'GRN_No',
@@ -436,8 +440,9 @@ def GRGN(conversation):
     
 def Unknown(conversation):
     try:
+        prompt_instructions = "Please provide only the value without any explanation."
         user_questions = [
-            'what are the imp information present in text?'
+            f'{prompt_instructions} what are the imp information present in text?'
             ]
         keys = [
             'Information'
@@ -490,8 +495,6 @@ def detect_document_type(text):
 
 def CheckInvoice(raw_text):
     try:
-        set_openai_api_key()
-
         document_type = detect_document_type(raw_text)
         print(document_type)
         if not document_type:
